@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    This is a client configuration file.
+    For a detailed reference, see "Orleans Configuration Reference.html".
+    https://orleans.codeplex.com/discussions/571534
+-->
+<ClientConfiguration xmlns="urn:orleans">
+    <!--Since we are not in the Azure environment, we have to set the DataConnectionString location manually.-->
+    <SystemStore
+        DataConnectionString="DefaultEndpointsProtocol=https;AccountName=[StorageAcountName];AccountKey=[StorageAccountKey]"
+        DeploymentId="AzureProdSilos"
+        SystemStoreType="AzureTable" />
+    <Tracing DefaultTraceLevel="Info"
+             TraceToConsole="true"
+             TraceToFile="{0}-{1}.log">
+        <TraceLevelOverride LogPrefix="Application"
+                            TraceLevel="Verbose" />
+    </Tracing>
+    <Statistics MetricsTableWriteInterval="30s"
+                PerfCounterWriteInterval="30s"
+                LogWriteInterval="300s"
+                WriteLogStatisticsToTable="true" />
+</ClientConfiguration>
